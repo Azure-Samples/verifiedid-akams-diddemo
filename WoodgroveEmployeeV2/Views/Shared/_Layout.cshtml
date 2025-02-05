@@ -79,7 +79,7 @@
 
     <footer class="border-top footer">
         <div class="container">
-            &copy; @DateTime.Now.Year.ToString() - @ViewData["Title"] - No data is retained by this website. Some examples are for illustration only and are fictitious. No real association is intended or inferred.
+            <a href="@Configuration.GetSection( "VerifiedID" )["githubLink"]" target="_blank">[github]</a> &copy; @DateTime.Now.Year.ToString() - @ViewData["Title"] - No data is retained by this website. Some examples are for illustration only and are fictitious. No real association is intended or inferred.
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
