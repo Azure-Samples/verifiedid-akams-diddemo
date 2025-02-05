@@ -1,0 +1,227 @@
+﻿@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+@{
+    ViewData["Title"] = $"{Configuration.GetSection( "AppSettings" )["CompanyName"]}";
+    ViewData["CompanyName"] = $"{Configuration.GetSection("AppSettings")["CompanyName"]}";
+}
+
+<div class="banner banner-bkg">
+    <div class="text-wrapper">
+        @if ((bool)ViewData["IsVerified"])
+        {
+            <span class="text">
+                <img src="~/images/check-circle.svg" alt="check-circle">
+                Welcome to @ViewData["CompanyName"], @ViewData["firstName"]! <br />Here are your next steps.
+            </span>
+        }
+        else
+        {
+            <span class="text">
+                Oops!! We are not ready to onboard you. Please return to <a href="/landing">Landing page</a>.
+            </span>
+        }
+    </div>
+</div>
+
+
+@if ( (bool)ViewData["IsVerified"]) 
+{
+
+    <div class="dashboard__content--wrapper col-12">
+        <div class="dashboard__content row">
+
+            <div class="side-tab d-md-block col">
+                <div class="side-tab__item">
+                    <div class="title">First Name:</div>
+                    <div class="text">@ViewData["firstName"]</div>
+                </div>
+                <div class="side-tab__item">
+                    <div class="title">Last Name:</div>
+                    <div class="text">@ViewData["lastName"]</div>
+                </div>
+                <div class="side-tab__item">
+                    <div class="title">Address:</div>
+                    <div class="text">
+                        @ViewData["address"]
+                    </div>                    
+                </div>
+                @if ( ViewData.ContainsKey("photo") &&  ViewData["photo"] != null ) {
+                    <div class="side-tab__item">
+                        <div class="title">Photo:</div>
+                        <div class="text">
+                            <img id="selfie" width="120" height="160" src="data:image/jpeg;base64,@ViewData["photo"]" />
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <div class="dashboard-card__wrapper col">
+
+                <div id="cred-part-1"  class="dashboard-card">
+                    <div class="dashboard-card__content ng-star-inserted">
+                        <div class="title">
+                            Retrieve your workplace credential and access company resources.
+                        </div>
+                        <div class="text">
+                            You can retrieve your Woodgrove ID credential using Microsoft Authenticator. This'll allow you to take your workplace identity with you.
+                        </div>
+                    </div>
+                    <!---->
+                    <div class="dashboard-card__action ng-star-inserted">
+                        <button id="issue-btn" class="btn btn--secondary">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M19.75 4C20.9926 4 22 5.00736 22 6.25V11.7578C21.5506 11.457 21.044 11.235 20.5 11.1115V6.25C20.5 5.83579 20.1642 5.5 19.75 5.5H4.25C3.83579 5.5 3.5 5.83579 3.5 6.25V17.7546C3.5 18.1688 3.83579 18.5046 4.25 18.5046H16V20.0046H4.25C3.00736 20.0046 2 18.9972 2 17.7546V6.25C2 5.00736 3.00736 4 4.25 4H19.75ZM13.2523 12.9961H15.7604C15.459 13.4454 15.2364 13.952 15.1124 14.4961H13.2523C12.8381 14.4961 12.5023 14.1604 12.5023 13.7461C12.5023 13.3664 12.7844 13.0526 13.1505 13.003L13.2523 12.9961ZM9.75 12.5C10.1642 12.5 10.5 12.8358 10.5 13.25V13.7427L10.4921 13.8513C10.3293 14.9642 9.39767 15.5009 7.99995 15.5009C6.60213 15.5009 5.67048 14.9637 5.50787 13.8501L5.5 13.7418V13.25C5.5 12.8358 5.83579 12.5 6.25 12.5H9.75ZM8 8.50218C8.82841 8.50218 9.49997 9.17374 9.49997 10.0022C9.49997 10.8306 8.82841 11.5021 8 11.5021C7.17159 11.5021 6.50003 10.8306 6.50003 10.0022C6.50003 9.17374 7.17159 8.50218 8 8.50218ZM13.2523 9.5H17.75C18.1642 9.5 18.5 9.83579 18.5 10.25C18.5 10.6297 18.2178 10.9435 17.8518 10.9932L17.75 11H13.2523C12.8381 11 12.5023 10.6642 12.5023 10.25C12.5023 9.8703 12.7844 9.55651 13.1505 9.50685L13.2523 9.5ZM23 15.5C23 17.433 21.433 19 19.5 19C17.567 19 16 17.433 16 15.5C16 13.567 17.567 12 19.5 12C21.433 12 23 13.567 23 15.5ZM17 19.2422V22.2859C17 22.9184 17.7648 23.2352 18.212 22.7879L19.5 21.5L20.788 22.7879C21.2352 23.2352 22 22.9184 22 22.2859V19.2422C21.285 19.7208 20.4251 20 19.5 20C18.5749 20 17.715 19.7208 17 19.2422Z" fill="currentColor"></path>
+                            </svg><span >Retrieve my Verified ID</span>
+                        </button>
+                    </div>
+                    <!---->
+                </div>
+
+                <div id="cred-part-2" class="dashboard-card d-none">
+                    <div class="dashboard-card__content ng-star-inserted">
+                        <div class="title">
+                            Scan the QR code with Microsoft Authenticator
+                        </div>
+                        <div class="text">
+                            Use the employee ID number to retrieve and save your Woodgrove ID credential and take it with you. In the app, open the Verified ID tab and tap on the QR code scan icon.
+                        </div>
+                    </div>
+                    <!---->
+                    <div class="dashboard-card__action ng-star-inserted">
+                        <div id="qrcode" style="text-align:center; display:none"></div>
+
+                        <div id="pinWrapper" class="text text-center" style="display:none">
+                            <span id="pinCode" class="credential-pin-text">Pin code: 0000</span>
+                            <button triggers="mouseenter:mouseleave" class="btn-transparent credential-pin-info-button transform-scale-70">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="M22.65 34h3V22h-3ZM24 18.3q.7 0 1.175-.45.475-.45.475-1.15t-.475-1.2Q24.7 15 24 15q-.7 0-1.175.5-.475.5-.475 1.2t.475 1.15q.475.45 1.175.45ZM24 44q-4.1 0-7.75-1.575-3.65-1.575-6.375-4.3-2.725-2.725-4.3-6.375Q4 28.1 4 23.95q0-4.1 1.575-7.75 1.575-3.65 4.3-6.35 2.725-2.7 6.375-4.275Q19.9 4 24.05 4q4.1 0 7.75 1.575 3.65 1.575 6.35 4.275 2.7 2.7 4.275 6.35Q44 19.85 44 24q0 4.1-1.575 7.75-1.575 3.65-4.275 6.375t-6.35 4.3Q28.15 44 24 44Zm.05-3q7.05 0 12-4.975T41 23.95q0-7.05-4.95-12T24 7q-7.05 0-12.025 4.95Q7 16.9 7 24q0 7.05 4.975 12.025Q16.95 41 24.05 41ZM24 24Z" fill="#057FDC"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <!---->
+                </div>
+
+                <div id="cred-part-3" class="dashboard-card d-none">
+                    <div class="dashboard-card__content ng-star-inserted">
+                        <div class="title">
+                            Success!
+                        </div>
+                        <div class="text">
+                            <p>
+                                Welcome to Woodgrove, you have successfully received your Verified Employee ID.<br /><br/>
+                                You can now present this digital ID card to access apps internally as well as with 3rd parties that accept Verified IDs.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="dashboard-card__action ngx-az-did-qrman-card__action">
+                        <div class="qrcode-wrapper">
+                            <svg width="113" height="113" viewBox="0 0 113 113" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M56.1585 112.133C87.0446 112.133 112.083 87.0954 112.083 56.2093C112.083 25.3233 87.0446 0.285156 56.1585 0.285156C25.2725 0.285156 0.234375 25.3233 0.234375 56.2093C0.234375 87.0954 25.2725 112.133 56.1585 112.133Z" fill="#57A300"></path>
+                                <path d="M25.0714 58.2446C24.5541 57.6923 24.2885 56.9653 24.3165 56.2103C24.3444 55.4484 24.666 54.7493 25.2252 54.225L31.0623 48.8284C31.5936 48.346 32.2717 48.0804 32.9777 48.0804C33.7606 48.0804 34.5156 48.4089 35.0469 48.9822L49.9787 65.0044L76.5916 30.9256C77.1298 30.2336 77.9407 29.8281 78.8215 29.8281C79.4507 29.8281 80.0449 30.0309 80.5482 30.4153L86.8816 35.3017C88.091 36.1965 88.3496 37.9371 87.4408 39.1745L53.411 82.7464C52.0898 84.4381 49.5662 84.5499 48.0982 82.977L25.0714 58.2446Z" fill="white"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <!---->
+                </div>
+
+
+                <div id="order-laptop" class="dashboard-card d-md-flex">
+                    <div class="dashboard-card__content">
+                        <div class="title">Next, order your equipment</div>
+                        <div class="text">
+                            Please order your new work equipment from Proseware.com.<br ><br > Use your digital employee card to access the
+                            Woodgrove corporate discount.
+                        </div>
+                    </div>
+                    <div class="dashboard-card__action">
+                        <div class="image-wrapper">
+                            <lib-img src="dashboard/equipment" ext="svg" alt="Equipment" >
+                                <img src="~/images/equipment.svg" alt="" class="ng-star-inserted"><!----><!---->
+                            </lib-img>
+                        </div>
+                        <a target="_blank" class="btn btn--secondary" href="https://proseware.azurewebsites.net/">
+                            Visit
+                            Proseware <i class="bi bi-box-arrow-up-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="dashboard-card d-none">
+                    <div class="dashboard-card__content">
+                        <div class="title">Next, order your equipment</div>
+                        <div class="text">
+                            Use your digital employee card to access the Woodgrove
+                            corporate discount.
+                        </div>
+                        <div class="sub-title">Equipment Required:</div>
+                        <div class="text">Laptop computer, Mouse, Display monitor</div>
+                    </div>
+                    <div class="dashboard-card__action">
+                        <div class="image-wrapper">
+                            <lib-img src="dashboard/equipment" ext="svg" alt="Equipment" >
+                                <img src="~/images/equipment.svg" alt="" class="ng-star-inserted"><!----><!---->
+                            </lib-img>
+                        </div>
+                        <button type="button" class="btn btn--secondary">Visit Proseware <i class="bi bi-box-arrow-up-right"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button type="button" id="showDialog" style="display:none" data-bs-toggle="modal" data-bs-target="#msgDialog">Show Dialog</button>
+    <div id="msgDialog" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 id="msgTitle" class="modal-title">msg title</h4>
+                    <button id="close-btn" type="button" class="close" data-bs-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p id="msgBody"> ...msg body... </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
+
+    <script src="~/js/qrcode.min.js"></script>
+    <script src="~/js/verifiedid.requestservice.client.js"></script>
+    <script src="~/js/verifiedid.uihandler.js"></script>
+
+    <script>
+        var qrcode = new QRCode("qrcode", { width: 150, height: 150 });
+
+        function showHideCards( show, hide, hide2 ) {
+            document.getElementById(`cred-part-${show}`).classList.remove("d-none");
+            document.getElementById(`cred-part-${hide}`).classList.add("d-none");
+            document.getElementById(`cred-part-${hide2}`).classList.add("d-none");
+        }
+        function progressCard( cardNo ) {
+            if ( cardNo == 1) { showHideCards( 1, 2, 3); }
+            if ( cardNo == 2) { showHideCards( 2, 1, 3); }
+            if ( cardNo == 3) { showHideCards( 3, 1, 2); }
+        }
+        document.getElementById('issue-btn').addEventListener('click', () => {
+            progressCard(2);
+            requestService.createIssuanceRequest( issuanceCallback );
+        });
+        function issuanceCallback( requestType, event, id, data ) {
+            switch(event) {
+                case "retrieved":
+                    dimQRCode();
+                break;
+                case "issued":
+                    hideQRCode();
+                    progressCard(3);
+                break;
+                case "cancelled": case "timeout": case "error":
+                    hideQRCode();
+                    progressCard(1);
+                    showDialog( `${requestType} ${event}`, JSON.stringify(data) );
+                break;
+            }
+        }
+
+    </script>
+

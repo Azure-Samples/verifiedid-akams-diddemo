@@ -1,57 +1,16 @@
 # Project Name
 
-(short, 1-3 sentenced, description of the project)
+This sample contains the source code behind the WoodgroveEmployeeV2 and TrueIdentityV2 public demo available at [https://aka.ms/diddemo](https://aka.ms/diddemo).
+The code is published for reference only. 
 
 ## Features
 
-This project framework provides the following features:
-
-* Feature 1
-* Feature 2
-* ...
-
-## Getting Started
-
-### Prerequisites
-
-(ideally very short, if any)
-
-- OS
-- Library version
-- ...
-
-### Installation
-
-(ideally very short)
-
-- npm install [package name]
-- mvn install
-- ...
-
-### Quickstart
-(Add steps to get up and running quickly)
-
-1. git clone [repository clone url]
-2. cd [repository name]
-3. ...
+The public demo illustrates employee onboarding, using [Microsoft Entra Verified ID](https://aka.ms/didfordevs), to Woodgrove via performing a mock identity verification provided by fictious company called True Identity Inc.
 
 
-## Demo
+## Repo structure
 
-A demo app is included to show how to use the project.
+- [WoodgroveEmployeeV2](WoodgroveEmployeeV2) - the Woodgrove onboarding and Alumni part
+- [TrueIdentityV2](TrueIdentityV2) - the TrueIdentityV2 mock identity verification part
+- [VerifiedIDRequestService](VerifiedIDRequestService) - Comon Verified ID Request Service API functionality
 
-To run the demo, follow these steps:
-
-(Add steps to start up the demo)
-
-1.
-2.
-3.
-
-## Resources
-
-(Any additional resources or related projects)
-
-- Link to supporting information
-- Link to similar sample
-- ...

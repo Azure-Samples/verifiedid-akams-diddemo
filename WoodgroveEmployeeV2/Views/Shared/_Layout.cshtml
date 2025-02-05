@@ -1,0 +1,90 @@
+﻿@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - @Configuration.GetSection( "AppSettings" )["CompanyName"]</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-wg-black box-shadow">
+            <div class="container-fluid">                
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">
+                                <img style="width:150px" src="~/images/logo.svg" alt="Woodgrove" />
+                            </a>
+                        </li>
+                        <li>
+                            <span class="nav-sep">
+                                <img src="~/images/sep.png" />
+                            </span>
+                        </li>
+                        <li>
+                            <span class="nav-title">
+                                @ViewData["sectionName"]
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div id="navbarCollapse" class="header__right navbar-collapse collapse">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item ng-star-inserted"></li>
+                        <li class="nav-item ng-star-inserted">
+                            <a href="javascript:void(0)" class="nav-link animate">Our Mission</a>
+                        </li>
+                        <li class="nav-item ng-star-inserted">
+                            <a href="javascript:void(0)" class="nav-link animate">Our Team</a>
+                        </li>
+                        <li class="nav-item ng-star-inserted">
+                            <a href="javascript:void(0)" class="nav-link animate">Company Resources</a>
+                        </li>
+                        <li class="nav-item ng-star-inserted">
+                            <a class="nav-link animate" href="/alumni/landing">Alumni</a>
+                        </li>
+                        @if ((ViewData.ContainsKey("IsVerified") && (bool)ViewData["IsVerified"]) || (ViewData.ContainsKey("IsAlumniVerified") && (bool)ViewData["IsAlumniVerified"]))
+                        {
+                            <li class="nav-item ng-star-inserted">
+                                <a class="nav-link animate" href="javascript:void(0)">
+                                    @ViewData["firstName"] @ViewData["lastName"]
+                                    <img src="~/images/chevron-down.svg" alt="down arrow">
+                                </a>
+                            </li>
+                            <li class="nav-item ng-star-inserted">
+                                <a class="nav-link animate" href="/signout">Signout</a>
+                            </li>
+                        }
+
+                        <!----><!---->
+                    </ul>
+                </div>
+
+
+            </div>
+        </nav>
+                
+    </header>
+    <!--<div class="container">-->
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    <!--</div>-->
+
+    <footer class="border-top footer">
+        <div class="container">
+            &copy; @DateTime.Now.Year.ToString() - @ViewData["Title"] - No data is retained by this website. Some examples are for illustration only and are fictitious. No real association is intended or inferred.
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

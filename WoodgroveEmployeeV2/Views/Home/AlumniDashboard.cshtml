@@ -1,0 +1,185 @@
+﻿@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+@{
+    ViewData["Title"] = $"{Configuration.GetSection( "AppSettings" )["CompanyName"]}";
+    ViewData["CompanyName"] = $"{Configuration.GetSection("AppSettings")["CompanyName"]}";
+}
+
+<div class="banner">
+    <div  class="banner__background">
+        <picture>
+            <source media="(max-width: 767.98px)" srcset="~/images/banner-dashboard-sm.jpg">
+            <source media="(max-width: 991.98px)" srcset="~/imagesbanner-dashboard-md.jpg">
+            <source media="(max-width: 1199.98px)" srcset="~/images/banner-dashboard-lg.jpg">
+            <img src="~/images/banner-dashboard.jpg" alt="Top Banner Image">
+        </picture>
+    </div>
+    <div class="text-wrapper">
+        @if ((bool)ViewData["IsAlumniVerified"])
+        {
+            <span class="text">
+                <img src="~/images/check-circle.svg" alt="check-circle">
+                Welcome back @ViewData["firstName"]! <br />Learn more about the alumni network, the resources, and how to get involved below.
+            </span>
+        }
+        else
+        {
+            <span class="text">
+                Oops!! We don't recognize you. Please go to <a href="/alumni/landing">Landing page</a>.
+            </span>
+        }
+    </div>
+</div>
+
+
+@if ((bool)ViewData["IsAlumniVerified"])
+{
+
+    <div class="dashboard__content--wrapper col-12">
+        <div class="dashboard__content row">
+
+            <div class="side-tab d-md-block col">
+                <div class="side-tab__item">
+                    <div class="title">First Name:</div>
+                    <div class="text">@ViewData["firstName"]</div>
+                </div>
+                <div class="side-tab__item">
+                    <div class="title">Last Name:</div>
+                    <div class="text">@ViewData["lastName"]</div>
+                </div>
+                <div class="side-tab__item">
+                    <div class="title">Address:</div>
+                    <div class="text">
+                        @ViewData["address"]
+                    </div>                    
+                </div>
+                @if ( ViewData.ContainsKey("photo") &&  ViewData["photo"] != null ) {
+                    <div class="side-tab__item">
+                        <div class="title">Photo:</div>
+                        <div class="text">
+                            <img id="selfie" width="120" height="160" src="data:image/jpeg;base64,@ViewData["photo"]" />
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <div class="dashboard-card__wrapper col">
+
+                <div id="message-wrapper" class="margin-bottom-25 margin-top-25">
+                    <div id="message">@ViewData["message"]</div>
+                </div>
+
+                <div class="card-set row">
+
+                    <div class="col-12 col-lg-6 col-xl-4">
+                        <div id="membership" class="verification-card membership verification-card__alumni-dashboard">
+                            <div class="verification-card__content ng-star-inserted">
+                                <div class="header-image m-auto">
+                                    <picture>
+                                        <source media="(max-width: 991.98px)" srcset="~/images/wg-alumni-membership-md.jpg">
+                                         <img src="~/images/wg-alumni-membership-xl.jpg" alt="Top Banner Image">
+                                    </picture>
+                                </div>
+                                <div class="title">
+                                    Why membership matters
+                                </div>
+                                <div class="text">
+                                    Ask Woodgrove alumni why they join the Alumni Network and they'll tick off a list of reasons that range from ongoing...
+                                </div>
+                            </div>
+                            <!---->
+                            <div class="verification-card__action">
+                                <button class="btn btn--secondary ctr-btn">
+                                    Activate your perks
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!---->
+
+                    <div class="col-12 col-lg-6 col-xl-4">
+                        <div id="who-we-are" class="verification-card who-we-are verification-card__alumni-dashboard">
+                            <div class="verification-card__content ng-star-inserted">
+                                <div class="header-image m-auto">
+                                    <picture>
+                                        <source media="(max-width: 991.98px)" srcset="~/images/wg-alumni-who-we-are-md.jpg">
+                                        <img src="~/images/wg-alumni-who-we-are-xl.jpg" alt="Top Banner Image">
+                                    </picture>
+                                </div>
+                                <div class="title">
+                                    Who we are
+                                </div>
+                                <div class="text">
+                                    Whether you left Woodgrove 10 years ago or yesterday, finding success and fulfillment beyond the green badge is what the Woodgrove Alumni Network...
+                                </div>
+                            </div>
+                            <!---->
+                            <div class="verification-card__action">
+                                <button class="btn btn--secondary ctr-btn">
+                                    Read more
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!---->
+
+                    <div class="col-12 col-lg-6 col-xl-4">
+                        <div id="get-involved" class="verification-card get-involved verification-card__alumni-dashboard">
+                            <div class="verification-card__content ng-star-inserted">
+                                <div class="header-image m-auto">
+                                    <picture>
+                                        <source media="(max-width: 991.98px)" srcset="~/images/wg-alumni-get-involved-md.jpg">
+                                        <img src="~/images/wg-alumni-get-involved-xl.jpg" alt="Top Banner Image">
+                                    </picture>
+                                </div>
+                                <div class="title">
+                                    Get involved
+                                </div>
+                                <div class="text">
+                                    The Alumni Network brings members together several
+                                    times a year in cities around the world — to reconnect, meet fellow alums who are hiring,
+                                    learn...
+                                </div>
+                            </div>
+                            <!---->
+                            <div class="verification-card__action">
+                                <button class="btn btn--secondary ctr-btn">
+                                    Read more
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!---->
+
+                    <div >
+                        <div id="investments" class="verification-card investments verification-card__alumni-dashboard">
+                            <div class="verification-card__content ng-star-inserted">
+                                <div class="title">
+                                    Alumni financial services &amp; investments
+                                </div>
+                                <div class="text">
+                                    We know finances and your investments are important to
+                                    you. It's important to us that we make it as easy as possible to access.<br><br> Use your Employee Verified ID to retrieve
+                                    your financial information.
+                                </div>
+                            </div>
+                            <!---->
+                            <div class="verification-card__action">
+                                <div class="image-wrapper">
+                                    <img src="~/images/wg-alumni-financial-svc.jpg" alt="Financial Services">
+                                </div>
+                                <a href="javascript:void(0)" class="btn btn--secondary ctr-btn">
+                                    Review
+                                    finances
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!---->
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+}

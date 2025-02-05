@@ -398,3 +398,11 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+# ignore (private) dev settings
+appsettings.[Dd]evelopment.json
+
+[Pp]ublish[Pp]rofiles/
+[Ss]ervice[Dd]ependencies
+
+.dev/

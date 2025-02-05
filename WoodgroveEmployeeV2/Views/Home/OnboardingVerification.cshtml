@@ -1,0 +1,205 @@
+﻿@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+@{
+    ViewData["Title"] = $"{Configuration.GetSection( "AppSettings" )["CompanyName"]}";
+    ViewData["idvUrl"] = $"{Configuration.GetSection("VerifiedID")["idvUrl"]}";
+}
+
+<div class="banner banner-bkg">
+    <div class="text-wrapper">
+        <span class="text">
+            Hi @ViewData["firstName"].<br />Let's verify your identity to access the employee portal.
+        </span>
+    </div>
+</div>
+
+<div style="text-align: center;" class="container">
+
+    <div id="message-wrapper" class="margin-bottom-25 margin-top-25">
+        <div id="message">@ViewData["message"]</div>
+    </div>
+    
+    <!-- cards -->
+
+    <div class="col-12">
+        <div class="verification-card__wrapper">
+            <div class="verification-card">
+                <div class="verification-card__header">
+                    <span class="step-number ng-star-inserted">1</span><!---->
+                </div>
+                <div class="verification-card__content">
+                    <div class="title">Verify using the True Identity website</div>
+                    <div class="text">
+                        They’ll walk you through a process to verify
+                        your identity. Once done, you’ll come back here and continue to step two.
+                    </div>
+                </div>
+                <div class="verification-card__action">
+                    <a class="btn btn--secondary ng-star-inserted"
+                       href="@ViewData["IdvUrl"]@ViewData["returnUrl"]&amp;firstName=@ViewData["firstName"]&amp;lastName=@ViewData["lastName"]">
+                        Verify with True Identity
+                    </a>
+                    <button type="button" id="been-verified-btn" class="btn btn-link text-dark mt-4 ng-star-inserted">
+                        <small class="ng-tns-c62-2">I've been verified&nbsp;&nbsp;></small>
+                    </button><!---->
+                </div>
+            </div>
+            <div id="card-2" class="verification-card blur-disable">
+                <div class="verification-card__header">
+                    <span class="step-number ng-star-inserted">2</span><!---->
+                </div>
+                <div class="verification-card__content">
+                    <div class="title">Confirm you have your True Identity card</div>
+                    <div class="text">
+                        If this looks familiar, you're ready to continue
+                        to step three.
+                    </div>
+                </div>
+                <div class="verification-card__action">
+                    <img src="~/images/true-id-card.png" alt="true id card" class="true-id">
+                </div>
+            </div>
+            <div id="card-3" class="verification-card blur-disable">
+                <div class="verification-card__header">
+                    <span class="step-number ng-star-inserted">3</span><!---->
+                </div>
+                <div class="verification-card__content ng-star-inserted">
+                    <div id="card-3a-title" class="title">Access the personalized employee portal</div>
+                    <div id="card-3a-text" class="text">
+                        You’ll need a Verifiable Credential and
+                        Microsoft Authenitcator to access.
+                    </div>
+                    <div id="card-3b-title" class="title" style="display:none">
+                        Scan the QR code with the Microsoft Authenticator
+                        app
+                    </div>
+                    <div id="card-3b-text" class="text" style="display:none">
+                        <p>
+                            In the app, <b>open</b> the Verified ID tab and <b>tap</b> on
+                            the QR code scan icon.
+                        </p>
+                    </div>
+                    <div id="card-3c-title" class="title" style="display:none">
+                        Success!
+                    </div>
+                    <div id="card-3c-text" class="text" style="display:none">
+                        It's official! Signing you in.
+                    </div>
+                </div><!---->
+                <div class="verification-card__action ng-star-inserted">
+                    <button id="verify-credential" class="btn btn--secondary blur-disable">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                             class="ng-tns-c62-2">
+                            <path d="M19.75 4C20.9926 4 22 5.00736 22 6.25V11.7578C21.5506 11.457 21.044 11.235 20.5 11.1115V6.25C20.5 5.83579 20.1642 5.5 19.75 5.5H4.25C3.83579 5.5 3.5 5.83579 3.5 6.25V17.7546C3.5 18.1688 3.83579 18.5046 4.25 18.5046H16V20.0046H4.25C3.00736 20.0046 2 18.9972 2 17.7546V6.25C2 5.00736 3.00736 4 4.25 4H19.75ZM13.2523 12.9961H15.7604C15.459 13.4454 15.2364 13.952 15.1124 14.4961H13.2523C12.8381 14.4961 12.5023 14.1604 12.5023 13.7461C12.5023 13.3664 12.7844 13.0526 13.1505 13.003L13.2523 12.9961ZM9.75 12.5C10.1642 12.5 10.5 12.8358 10.5 13.25V13.7427L10.4921 13.8513C10.3293 14.9642 9.39767 15.5009 7.99995 15.5009C6.60213 15.5009 5.67048 14.9637 5.50787 13.8501L5.5 13.7418V13.25C5.5 12.8358 5.83579 12.5 6.25 12.5H9.75ZM8 8.50218C8.82841 8.50218 9.49997 9.17374 9.49997 10.0022C9.49997 10.8306 8.82841 11.5021 8 11.5021C7.17159 11.5021 6.50003 10.8306 6.50003 10.0022C6.50003 9.17374 7.17159 8.50218 8 8.50218ZM13.2523 9.5H17.75C18.1642 9.5 18.5 9.83579 18.5 10.25C18.5 10.6297 18.2178 10.9435 17.8518 10.9932L17.75 11H13.2523C12.8381 11 12.5023 10.6642 12.5023 10.25C12.5023 9.8703 12.7844 9.55651 13.1505 9.50685L13.2523 9.5ZM23 15.5C23 17.433 21.433 19 19.5 19C17.567 19 16 17.433 16 15.5C16 13.567 17.567 12 19.5 12C21.433 12 23 13.567 23 15.5ZM17 19.2422V22.2859C17 22.9184 17.7648 23.2352 18.212 22.7879L19.5 21.5L20.788 22.7879C21.2352 23.2352 22 22.9184 22 22.2859V19.2422C21.285 19.7208 20.4251 20 19.5 20C18.5749 20 17.715 19.7208 17 19.2422Z"
+                                  fill="currentColor" class="ng-tns-c62-2"></path>
+                        </svg> &nbsp; Access personalized portal
+                    </button>
+                    <div id="qrcode" style="text-align:center; display:none"></div>
+                </div>
+                <!---->
+            </div>
+            <!---->
+            <div id="card-3-overlay" style="display:none">
+                <div id="interstitialOverlay" class="ng-tns-c60-1 ng-trigger ng-trigger-fadeAnimation ng-star-inserted">
+                    <div class="text-center overlay-body ng-tns-c60-1">
+                        <div class="overlay-body-header ng-tns-c60-1">Finishing up onboarding</div>
+                        <div class="overlay-body-content ng-tns-c60-1">
+                            <p id="welcome-text">
+                                Welcome %firstName%! <br/>We're finalizing some details before taking you to your personalized employee portal.
+                            </p>                            
+                        </div>
+                        <div class="div-container ng-tns-c60-1">
+                            <img src="~/images/success-circle.svg" class="success-icon ng-tns-c60-1 ng-star-inserted" style="">
+                        </div>
+                        <div class="div-container ng-tns-c60-1 ng-trigger ng-trigger-inOutAnimation ng-star-inserted" style="">
+                            <button id="onboard-btn" class="btn btn--primary ng-tns-c60-1"> Continue onboarding </button>
+                            <button id="home-btn" class="btn btn--light ng-tns-c60-1"> Return home </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- cards -->
+    <button type="button" id="showDialog" style="display:none" data-bs-toggle="modal" data-bs-target="#msgDialog">Show Dialog</button>
+    <div id="msgDialog" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 id="msgTitle" class="modal-title">msg title</h4>
+                    <button id="close-btn" type="button" class="close" data-bs-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p id="msgBody"> ...msg body... </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="~/js/qrcode.min.js"></script>
+    <script src="~/js/verifiedid.requestservice.client.js"></script>
+    <script src="~/js/verifiedid.uihandler.js"></script>
+
+    <script>
+        var qrcode = new QRCode("qrcode", { width: 150, height: 150 });
+
+        function gotoCard3() {
+            document.getElementById("card-2").classList.remove("blur-disable");
+            document.getElementById("card-3").classList.remove("blur-disable");
+            document.getElementById("verify-credential").classList.remove("blur-disable");
+        }
+
+        document.getElementById('been-verified-btn').addEventListener('click', () => {
+            gotoCard3();
+            document.getElementById('verify-credential').click();
+        });
+        function card3Progress( hide, show ) {
+            document.getElementById(`card-3${hide}-title`).style.display = "none";
+            document.getElementById(`card-3${hide}-text`).style.display = "none";
+            document.getElementById(`card-3${show}-title`).style.display = "";
+            document.getElementById(`card-3${show}-text`).style.display = "";
+        }
+        document.getElementById('verify-credential').addEventListener('click', () => {
+            document.getElementById('verify-credential').style.opacity = 0.1;
+            card3Progress( 'a', 'b' );
+            requestService.createPresentationRequest( presentationCallback );
+        });
+
+        function presentationCallback( requestType, event, id, data ) {
+            switch(event) {
+                case "retrieved":
+                    dimQRCode();
+                break;
+                case "verified":
+                    hideQRCode();
+                    card3Progress( 'b', 'c' );
+                    var txt = document.getElementById("welcome-text").innerHTML.replace("%firstName%", data.claims.firstName);
+                    document.getElementById("welcome-text").innerHTML = txt;
+                    document.getElementById("card-3-overlay").style.display = "";
+                break;
+                case "cancelled": case "timeout": case "error":
+                    hideQRCode();
+                    document.getElementById('verify-credential').style.opacity = 1;
+                    document.getElementById('verify-credential').style.display = "";
+                    card3Progress( 'b', 'a' );
+                    showDialog( `${requestType} ${event}`, JSON.stringify(data) );
+                break;
+            }
+        }
+        document.getElementById('onboard-btn').addEventListener('click', () => {
+            window.location = "/onboarding/dashboard";
+        });
+        document.getElementById('home-btn').addEventListener('click', () => {
+            window.location = "/onboarding/verification";
+        });
+
+        const urlParams = new URLSearchParams(window.location.search);
+        var trueIdVerified = urlParams.get('trueIdVerified');
+        if ( trueIdVerified == "true" ) {
+            gotoCard3();
+        }
+    </script>
+
+</div> <!-- container -->

@@ -1,0 +1,82 @@
+[
+  {
+    "name": "AppSettings__CacheExpiresInSeconds",
+    "value": "300",
+    "slotSetting": false
+  },
+  {
+    "name": "AppSettings__CompanyLogo",
+    "value": "https://trueidentityincv2.azurewebsites.net/images/True%20Identity%20Logo.svg",
+    "slotSetting": false
+  },
+  {
+    "name": "AppSettings__CompanyName",
+    "value": "True Identity Inc",
+    "slotSetting": false
+  },
+  {
+    "name": "AppSettings__CookieExpiresInSeconds",
+    "value": "7200",
+    "slotSetting": false
+  },
+  {
+    "name": "AppSettings__CookieKey",
+    "value": "state",
+    "slotSetting": false
+  },
+  {
+    "name": "VerifiedID__ApiEndpoint",
+    "value": "https://verifiedid.did.msidentity.com/v1.0/verifiableCredentials/",
+    "slotSetting": false
+  },
+  {
+    "name": "VerifiedID__Authority",
+    "value": "https://login.microsoftonline.com/",
+    "slotSetting": false
+  },
+  {
+    "name": "VerifiedID__client_name",
+    "value": "True Identity, Inc. V2",
+    "slotSetting": false
+  },
+  {
+    "name": "VerifiedID__CredentialManifest",
+    "value": "https://verifiedid.did.msidentity.com/v1.0/tenants/3c32ed40-8a10-465b-8ba4-0b1e86882668/verifiableCredentials/contracts/05d7ba57-f4e6-260c-ccb6-0cd74179779c/manifest",
+    "slotSetting": false
+  },
+  {
+    "name": "VerifiedID__CredentialType",
+    "value": "TrueIdentity",
+    "slotSetting": false
+  },
+  {
+    "name": "VerifiedID__DidAuthority",
+    "value": "did:web:...your name...",
+    "slotSetting": false
+  },
+  {
+    "name": "VerifiedID__IssuancePinCodeLength",
+    "value": "4",
+    "slotSetting": false
+  },
+  {
+    "name": "VerifiedID__ManagedIdentity",
+    "value": "true",
+    "slotSetting": false
+  },
+  {
+    "name": "VerifiedID__Purpose",
+    "value": "To prove your identity",
+    "slotSetting": false
+  },
+  {
+    "name": "VerifiedID__scope",
+    "value": "3db474b9-6a0c-4840-96ac-1fceb342124f/.default",
+    "slotSetting": false
+  },
+  {
+    "name": "VerifiedID__TenantId",
+    "value": "...your tenantId...",
+    "slotSetting": false
+  }
+]

@@ -1,0 +1,133 @@
+﻿@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+@{
+    ViewData["Title"] = $"{Configuration.GetSection( "AppSettings" )["CompanyName"]}";
+}
+
+<app-landing class="ng-tns-c61-1 ng-star-inserted">
+    <!--
+    <div id="message-wrapper" class="" style="text-align:center">
+        <div id="message">@ViewData["message"]</div>
+    </div>
+    -->
+    <picture class="bg-image ng-tns-c61-1">
+        <source media="(max-width: 1025px)" srcset="~/images/wg-landing-bg-md.jpg" class="ng-tns-c61-1">
+        <source media="(max-width: 1921px)" srcset="~/images/wg-landing-bg-lg.jpg" class="ng-tns-c61-1">
+        <img src="~/images/wg-landing-bg-xl.jpg" alt="image" class="ng-tns-c61-1">
+    </picture>
+    <div class="woodgrove-alum landing ng-tns-c61-1">
+        <div class="landing__left ng-tns-c61-1">
+            <div class="row ng-tns-c61-1">
+                <div class="col-12 col-md-6 ng-tns-c61-1">
+                    <div class="intro-section ng-tns-c61-1">
+                        <h1 class="intro-section__title ng-tns-c61-1">Welcome to Woodgrove Alum!</h1>
+                        <p class="intro-section__para ng-tns-c61-1">
+                            Access exclusive alumni membership
+                            benefits that match the ones when you were with the company.
+                        </p>
+                        <p class="intro-section__para bold ng-tns-c61-1">Steps to access:</p>
+                        <div class="intro-section__steps divider ng-tns-c61-1">
+                            <p class="intro-section__para ng-tns-c61-1">
+                                1. Scan and sign in using your
+                                Woodgrove Verified ID.
+                            </p>
+                            <p class="intro-section__para ng-tns-c61-1">
+                                2. Even if your Verified ID is
+                                revoked, you'll still have access.
+                            </p>
+                            <p class="intro-section__para ng-tns-c61-1">
+                                3. Retrieve unique alumni
+                                benefits.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!----><!---->
+                <div id="access-card-1" class="col-12 col-md-6 ng-tns-c61-1">
+                    <section class="access-card d-flex justify-content-around flex-column ng-tns-c61-1 ng-star-inserted">
+                        <h1 class="access-card__title ng-tns-c61-1">Access your alumni portal below</h1>
+                        <p class="access-card__para ng-tns-c61-1">
+                            Sign in using your Woodgrove Verified
+                            ID by following the prompts on this page and/or the mobile device you used to scan.
+                        </p>
+                        <div class="buttons ng-tns-c61-1">
+                            <button id="verify-credential" class="btn btn--secondary mx-auto ng-tns-c61-1">
+                                <svg width="24" height="24"
+                                     viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="ng-tns-c61-1">
+                                    <path 
+                                          d="M19.75 4C20.9926 4 22 5.00736 22 6.25V11.7578C21.5506 11.457 21.044 11.235 20.5 11.1115V6.25C20.5 5.83579 20.1642 5.5 19.75 5.5H4.25C3.83579 5.5 3.5 5.83579 3.5 6.25V17.7546C3.5 18.1688 3.83579 18.5046 4.25 18.5046H16V20.0046H4.25C3.00736 20.0046 2 18.9972 2 17.7546V6.25C2 5.00736 3.00736 4 4.25 4H19.75ZM13.2523 12.9961H15.7604C15.459 13.4454 15.2364 13.952 15.1124 14.4961H13.2523C12.8381 14.4961 12.5023 14.1604 12.5023 13.7461C12.5023 13.3664 12.7844 13.0526 13.1505 13.003L13.2523 12.9961ZM9.75 12.5C10.1642 12.5 10.5 12.8358 10.5 13.25V13.7427L10.4921 13.8513C10.3293 14.9642 9.39767 15.5009 7.99995 15.5009C6.60213 15.5009 5.67048 14.9637 5.50787 13.8501L5.5 13.7418V13.25C5.5 12.8358 5.83579 12.5 6.25 12.5H9.75ZM8 8.50218C8.82841 8.50218 9.49997 9.17374 9.49997 10.0022C9.49997 10.8306 8.82841 11.5021 8 11.5021C7.17159 11.5021 6.50003 10.8306 6.50003 10.0022C6.50003 9.17374 7.17159 8.50218 8 8.50218ZM13.2523 9.5H17.75C18.1642 9.5 18.5 9.83579 18.5 10.25C18.5 10.6297 18.2178 10.9435 17.8518 10.9932L17.75 11H13.2523C12.8381 11 12.5023 10.6642 12.5023 10.25C12.5023 9.8703 12.7844 9.55651 13.1505 9.50685L13.2523 9.5ZM23 15.5C23 17.433 21.433 19 19.5 19C17.567 19 16 17.433 16 15.5C16 13.567 17.567 12 19.5 12C21.433 12 23 13.567 23 15.5ZM17 19.2422V22.2859C17 22.9184 17.7648 23.2352 18.212 22.7879L19.5 21.5L20.788 22.7879C21.2352 23.2352 22 22.9184 22 22.2859V19.2422C21.285 19.7208 20.4251 20 19.5 20C18.5749 20 17.715 19.7208 17 19.2422Z"
+                                          fill="currentColor" class="ng-tns-c61-1"></path>
+                                </svg> Sign in with Verified ID
+                            </button>
+                        </div>
+                    </section>
+                </div>
+                <!----><!---->
+                <div id="access-card-2" class="col-12 col-md-6 ng-tns-c61-1" style="display:none">
+                    <section class="access-card d-flex justify-content-around flex-column ng-tns-c61-1 ng-star-inserted">
+                        <h1 class="access-card__title ng-tns-c61-1">Scan with the Microsoft Authenticator app</h1>
+                        <p class="access-card__para ng-tns-c61-1">
+                            In the app, <b>open</b> the Verified ID tab and <b>tap</b> on the QR code scan icon.
+                        </p>
+                        <div id="qrcode" style="text-align:center; display:none"></div>
+                    </section>
+                </div>
+                <!----><!---->
+            </div>
+        </div>
+    </div>
+
+    <button type="button" id="showDialog" style="display:none" data-bs-toggle="modal" data-bs-target="#msgDialog">Show Dialog</button>
+    <div id="msgDialog" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 id="msgTitle" class="modal-title">msg title</h4>
+                    <button id="close-btn" type="button" class="close" data-bs-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p id="msgBody"> ...msg body... </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</app-landing>
+
+<script src="~/js/qrcode.min.js"></script>
+<script src="~/js/verifiedid.requestservice.client.js"></script>
+<script src="~/js/verifiedid.uihandler.js"></script>
+
+<script>
+    var qrcode = new QRCode("qrcode", { width: 150, height: 150 });
+
+    function cardProgress( hide, show ) {
+        document.getElementById(`access-card-${hide}`).style.display = "none";
+        document.getElementById(`access-card-${show}`).style.display = "";
+    }
+    document.getElementById('verify-credential').addEventListener('click', () => {
+        document.getElementById('verify-credential').style.opacity = 0.1;
+        cardProgress( '1', '2' );
+        requestService.createPresentationRequest( presentationCallback );
+    });
+
+    function presentationCallback( requestType, event, id, data ) {
+        switch(event) {
+            case "retrieved":
+                dimQRCode();
+            break;
+            case "verified":
+                hideQRCode();
+                window.location = "/alumni/dashboard";
+            break;
+            case "cancelled": case "timeout": case "error":
+                hideQRCode();
+                document.getElementById('verify-credential').style.opacity = 1;
+                document.getElementById('verify-credential').style.display = "";
+                cardProgress( '2', '1' );
+                showDialog( `${requestType} ${event}`, JSON.stringify(data) );
+            break;
+        }
+    }
+
+</script>
